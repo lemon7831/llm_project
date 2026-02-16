@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Send, Bot, User as UserIcon, Loader2, ChevronDown, ChevronRight, CheckCircle2, Search, ShieldAlert, BrainCircuit, RefreshCw, ThumbsUp, ThumbsDown, Edit, Pin, Save, X, Lightbulb, Settings, Trash2, Plus, MessageSquareText
+  Send, Bot, User as UserIcon, Loader2, ChevronDown, ChevronRight, CheckCircle2, Search, ShieldAlert, BrainCircuit, RefreshCw, ThumbsUp, ThumbsDown, Edit, Pin, Save, X, Lightbulb, Settings, Trash2, Plus, MessageSquareText, CircleHelp
 } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import { BotConfig, ChatMessage, ThoughtStep, User, FileData, UserMemory, FeedbackCorrection, ChatSession } from '../types';
@@ -134,17 +134,19 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
           <div className="px-4 py-3 bg-brand-50 text-brand-700 rounded-xl text-sm font-bold cursor-pointer truncate border border-brand-100 ring-4 ring-brand-500/5">目前對話 (Session {sessionId.slice(-4)})</div>
           <div className="px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-xl text-sm font-medium cursor-pointer truncate transition-all opacity-60">查詢業務報表 (昨天)</div>
         </div>
-        <div className="p-4 border-t border-slate-200 bg-white">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-xs shadow-md">{currentUser.name[0]}</div>
-              <div className="overflow-hidden">
-                <p className="text-sm font-bold text-slate-800 truncate leading-tight">{currentUser.name}</p>
-                <p className="text-[10px] font-bold text-slate-400 truncate uppercase tracking-tight">{currentUser.role === 'admin' ? '管理者' : '使用者'}</p>
-              </div>
-            </div>
-            <button onClick={() => setMemoryModalOpen(true)} className="text-slate-300 hover:text-brand-600 p-2 rounded-xl hover:bg-brand-50 transition-all" title="長期記憶配置"><Settings size={18} /></button>
-          </div>
+        <div className="p-3 border-t border-slate-200 bg-slate-50/50">
+           <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-200/50 transition-all text-left">
+              <CircleHelp size={18} className="text-slate-400" />
+              <span>說明</span>
+           </button>
+           <button onClick={() => setMemoryModalOpen(true)} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-200/50 transition-all text-left">
+              <Settings size={18} className="text-slate-400" />
+              <span>設定</span>
+           </button>
+           <div className="mt-2 px-3 pb-2 text-[10px] text-slate-400 font-bold flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+              台北, 台灣
+           </div>
         </div>
       </div>
 
